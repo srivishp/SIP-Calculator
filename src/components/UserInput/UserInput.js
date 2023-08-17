@@ -9,27 +9,26 @@ const defaultValues = {
   duration: 5,
 };
 
-const UserInput = () => {
+const UserInput = (props) => {
   const [userInput, setUserInput] = useState(defaultValues);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("CALCULATE");
+    props.onCalculate(userInput);
   };
 
   const handleReset = (event) => {
     setUserInput(defaultValues);
-    console.log(userInput);
   };
 
   const handleChange = (input, value) => {
     setUserInput((prevInput) => {
       // [input]: value will dynamically assign input to value,
       // based on the text field where user adds data
+      // +value converts string to number
       // * Example: [expected-return]: 12
-      return { ...prevInput, [input]: value };
+      return { ...prevInput, [input]: +value };
     });
-    console.log(userInput);
   };
 
   return (
